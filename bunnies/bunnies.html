@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <script src="bunnies.js"></script>
+    <style>
+      #container {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+      }
+
+      #templates {
+        display: none;
+      }
+
+      .bunneh {
+        position: absolute;
+      }
+
+      .explosion {
+        position: absolute;
+        animation: fadeout 5s forwards;
+      }
+
+      #score {
+        position: absolute;
+        left: 1em;
+        top: 1em;
+      }
+
+      #crosshair {
+        position: absolute;
+        cursor: none;
+      }
+
+      @keyframes fadeout {
+        from { opacity: 1; transform: translate(0, -50) scale(0.1, 0.1)}
+        5%   { transform: scale(5, 5)}
+        to   { opacity: 0; transform: translate(0, -200) scale(2, 2)}
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="score">0</div>
+      <img src="crosshair.png" alt="+" id="crosshair">
+    </div>
+
+    <div id="templates">
+      <img class="bunneh" src="Rabbit_Silhouette.svg" width="50" />
+      <img class="power" src="power.png" width="36"/>
+      <img class="explosion" src="explosion.png" width="100"/>
+    </div>
+  </body>
+</html>

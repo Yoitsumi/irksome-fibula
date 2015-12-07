@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<script src="functions.js"></script>
+		<style>
+			body {
+				position: relative;
+			}
+
+			#target3 {
+				position: absolute;
+				top: 500px;
+				left: 0px;
+			}
+			#target4 {
+				position: absolute;
+				top: 600px;
+				left: 0px;
+			}
+			#target5 {
+				position: absolute;
+				top: 500px;
+				left: 300px;
+				height: 100px;
+			}
+			#target5.mirror {
+				transform: scale(-1, 1);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="target1"></div>
+		<img width="500" id="target2">
+		<img src="https://www.google.pl/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" id="target3">
+		<input type="text" id="target4">
+		<img src="https://www.google.pl/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" id="target5">
+	</body>
+</html>

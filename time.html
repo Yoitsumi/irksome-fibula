@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="time.js"></script>
+		<style>
+			#two {
+				font-size: 2em;
+			}
+
+			#two .digit {
+				text-shadow: 0 0 5px green;
+			}
+
+			#four {
+				background-color: black;
+				display: inline-block;
+			}
+
+			#four .digit {
+				background-image: url("nixie.png");
+				width: 64px;
+				height: 102px;
+				display: inline-block;
+			}
+
+			.margin {
+				margin-right: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="one">
+			<span class="dow"></span>
+			<span class="dom"></span>
+			<span class="month"></span>
+			<span class="year"></span>
+		</div>
+		<div id="two">
+			<span class="digit"></span>
+			<span class="digit"></span>:
+			<span class="digit"></span>
+			<span class="digit"></span>:
+			<span class="digit"></span>
+			<span class="digit"></span>
+		</div>
+		<canvas id="three" width="200" height="200"></canvas><br>
+		<div id="four">
+			<div class="digit"></div><div class="digit margin"></div>
+			<div class="digit"></div><div class="digit margin"></div>
+			<div class="digit"></div><div class="digit"></div>
+		</div>
+	</body>
+</html>

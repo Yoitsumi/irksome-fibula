@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Kalkulator</title>
+    <script src="calc.js"></script>
+  </head>
+  <body>
+    <div id="frist">
+      <input type="text" id="a">
+      <select id="op">
+        <option value="plus">+</option>
+        <option value="minus">-</option>
+      </select>
+      <input type="text" id="b">
+       = <span id="c"></span>
+    </div>
+    <hr>
+    <table>
+      <span id="calc-text"></span>
+      <tr>
+        <td><button>(</button></td>
+        <td><button>)</button></td>
+        <td><button>sqrt(</button></td>
+        <td><button>pow(</button></td>
+        <td><button>&lt;-</button></td>
+      </tr>
+      <tr>
+        <td><button>7</button></td>
+        <td><button>8</button></td>
+        <td><button>9</button></td>
+        <td><button>/</button></td>
+      </tr>
+      <tr>
+        <td><button>4</button></td>
+        <td><button>5</button></td>
+        <td><button>6</button></td>
+        <td><button>*</button></td>
+      </tr>
+      <tr>
+        <td><button>1</button></td>
+        <td><button>2</button></td>
+        <td><button>3</button></td>
+        <td><button>-</button></td>
+      </tr>
+      <tr>
+        <td><button>0</button></td>
+        <td><button>.</button></td>
+        <td><button>=</button></td>
+        <td><button>+</button></td>
+      </tr>
+    </table>
+    Aby użyć potęgowania (pow) należy wpisać podstawę i wykładnik w osobnych nawiasach, na przykład pow(2)(4) = 16
+    <hr>
+    <input type="text" id="timer"><button id="set-timer">Ustaw minutnik</button>
+    <small>(czytałem, że .wav może nie być obsługiwany, jednak u mnie na firefoxie 42.0 działa bez problemu)</small>
+  </body>
+</html>
