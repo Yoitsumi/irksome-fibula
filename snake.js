@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function friss() {
-    for(var i = 0; i<100; i++)
+    //for(var i = 0; i<100; i++)
       addLastSegment()
     foodDiv.style.visibility = 'hidden'
     setTimeout(spawnFood, 500)
