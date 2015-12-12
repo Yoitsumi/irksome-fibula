@@ -47,6 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
     $('#settings').classList.add('active')
   })
 
+  const colors = [
+    "", "#0029ff", "#00ff29", "#b53100", "#0b0083", "#5d3800", "#00818e", "#b500ff", "#ffa100"
+  ]
+
   const Hidden    = Symbol("Hidden"),
         Uncovered = Symbol("Uncovered"),
         Marked    = Symbol("Marked")
@@ -58,14 +62,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   var config = {
-    width: 50,
-    height: 50,
-    mines: 20
+    width: 30,
+    height: 16,
+    mines: 99
   }
 
   var state
 
-  interface Cell { mine: boolean, state: symbol, td?: Element }
+  interface Cell { mine: boolean, state: symbol, td?: HTMLElement }
 
   function guard(x: number, y: number, playfield: Cell[][]): Cell {
     if (x >= 0 && y >= 0 && x < playfield.length && y < playfield[x].length)
@@ -125,8 +129,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updateCell(x: number, y: number, playfield: Cell[][]) {
     const cell = playfield[x][y]
-    if (cell.state === Uncovered)
-      cell.td.textContent = cell.mine ? "X" : ""+countNeighborMines(x, y, state.playfield)
+    if (cell.state === Uncovered) {
+      const i = countNeighborMines(x, y, state.playfield)
+      cell.td.textContent = cell.mine ? "X" : i == 0 ? " " : ""+i
+      cell.td.style.color = colors[i]
+    }
     cell.td.className = stateClasses[cell.state]
   }
 

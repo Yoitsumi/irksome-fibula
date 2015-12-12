@@ -61,14 +61,15 @@ document.addEventListener("DOMContentLoaded", function () {
     $('#btn-settings').addEventListener('click', function (e) {
         $('#settings').classList.add('active');
     });
+    var colors = ["", "#0029ff", "#00ff29", "#b53100", "#0b0083", "#5d3800", "#00818e", "#b500ff", "#ffa100"];
     var Hidden = Symbol("Hidden"),
         Uncovered = Symbol("Uncovered"),
         Marked = Symbol("Marked");
     var stateClasses = (_stateClasses = {}, _defineProperty(_stateClasses, Hidden, "hidden"), _defineProperty(_stateClasses, Uncovered, "uncovered"), _defineProperty(_stateClasses, Marked, "marked"), _stateClasses);
     var config = {
-        width: 50,
-        height: 50,
-        mines: 20
+        width: 30,
+        height: 16,
+        mines: 99
     };
     var state;
     function guard(x, y, playfield) {
@@ -129,7 +130,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     function updateCell(x, y, playfield) {
         var cell = playfield[x][y];
-        if (cell.state === Uncovered) cell.td.textContent = cell.mine ? "X" : "" + countNeighborMines(x, y, state.playfield);
+        if (cell.state === Uncovered) {
+            var i = countNeighborMines(x, y, state.playfield);
+            cell.td.textContent = cell.mine ? "X" : i == 0 ? " " : "" + i;
+            cell.td.style.color = colors[i];
+        }
         cell.td.className = stateClasses[cell.state];
     }
     var leftDown = false,
