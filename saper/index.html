@@ -32,14 +32,32 @@
       .uncovered {
         background-color: rgb(167, 161, 203);
       }
+
+      #settings {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        display: none;
+        background-color: white;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        padding: 2em;
+      }
+
+      #settings.active {
+        display: inline-block;
+      }
     </style>
   </head>
   <body>
-    <span id="time"></span><span id="mines"></span>
+    <span id="time"></span> <span id="mines"></span>
     <table id="playfield"></table>
     <button id="btn-settings">settings</button>
     <div id="settings">
-
+      <label for="width">Szerokość</label><input type="number" min="3" max="99" id="width"><br>
+      <label for="height">Wysokość</label><input type="number" min="3" max="99" id="height"><br>
+      <label for="settings-mines">Ilość min</label><input type="number" min="1" max="500" id="settings-mines"><br>
+      <input type="button" value="Ok" id="settings-ok">
     </div>
   </body>
 </html>

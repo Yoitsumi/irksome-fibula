@@ -60,6 +60,19 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     $('#btn-settings').addEventListener('click', function (e) {
         $('#settings').classList.add('active');
+        $('#width').value = config.width;
+        $('#height').value = config.height;
+        $('#settings-mines').value = config.mines;
+    });
+    $('#settings-ok').addEventListener("click", function (_) {
+        $('#settings').classList.remove('active');
+        config = {
+            width: $('#width').value,
+            height: $('#height').value,
+            mines: $('#settings-mines').value
+        };
+        init();
+        localStorage.setItem('last-config', JSON.stringify(config));
     });
     var colors = ["", "#0029ff", "#00ff29", "#b53100", "#0b0083", "#5d3800", "#00818e", "#b500ff", "#ffa100"];
     var Hidden = Symbol("Hidden"),
@@ -71,6 +84,11 @@ document.addEventListener("DOMContentLoaded", function () {
         height: 16,
         mines: 99
     };
+    if (localStorage.getItem('last-config')) {
+        config = JSON.parse(localStorage.getItem('last-config'));
+    } else {
+        localStorage.setItem('last-config', JSON.stringify(config));
+    }
     var state;
     function guard(x, y, playfield) {
         if (x >= 0 && y >= 0 && x < playfield.length && y < playfield[x].length) return playfield[x][y];else return { mine: false, state: Hidden };
@@ -86,12 +104,16 @@ document.addEventListener("DOMContentLoaded", function () {
             return c.mine = true;
         });
         prepareTable(config.width, config.height, playfield);
-        state = { playfield: playfield };
+        state = { playfield: playfield, time: 0 };
         leftDown = false;
         rightDown = false;
         ignoreUp = false;
     }
     init();
+    setInterval(function () {
+        state.time++;
+        $('#time').textContent = state.time + "";
+    }, 1000);
     function prepareTable(w, h, playfield) {
         console.log("prepareTable(" + w + ", " + h + ")");
         while ($('#playfield').firstChild) $('#playfield').removeChild($('#playfield').firstChild);
@@ -187,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!state.won && flatten(playfield).every(function (c) {
                 return c.mine || c.state === Uncovered;
             })) {
-                alert("Won");
+                alert("Won!");
                 state.won = true;
             }
         }

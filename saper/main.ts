@@ -45,6 +45,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   $('#btn-settings').addEventListener('click', e => {
     $('#settings').classList.add('active')
+    $('#width').value = config.width
+    $('#height').value = config.height
+    $('#settings-mines').value = config.mines
+  })
+
+  $('#settings-ok').addEventListener("click", _ => {
+    $('#settings').classList.remove('active')
+    config = {
+      width: $('#width').value,
+      height: $('#height').value,
+      mines: $('#settings-mines').value
+    }
+    init()
+    localStorage.setItem('last-config', JSON.stringify(config))
   })
 
   const colors = [
@@ -67,6 +81,12 @@ document.addEventListener("DOMContentLoaded", () => {
     mines: 99
   }
 
+  if (localStorage.getItem('last-config')) {
+    config = JSON.parse(localStorage.getItem('last-config'))
+  } else {
+    localStorage.setItem('last-config', JSON.stringify(config))
+  }
+
   var state
 
   interface Cell { mine: boolean, state: symbol, td?: HTMLElement }
@@ -83,12 +103,17 @@ document.addEventListener("DOMContentLoaded", () => {
     take(shuffle(freeCells), config.mines).forEach(c => c.mine = true)
 
     prepareTable(config.width, config.height, playfield)
-    state = { playfield }
+    state = { playfield, time: 0 }
     leftDown = false
     rightDown = false
     ignoreUp = false
   }
   init()
+
+  setInterval(() => {
+    state.time ++
+    $('#time').textContent = state.time+""
+  }, 1000)
 
   function prepareTable(w: number, h: number, playfield: Cell[][]) {
     console.log(`prepareTable(${w}, ${h})`)
@@ -189,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
             uncover(x, y, playfield)
         })
         if (!state.won && flatten(playfield).every(c => c.mine || c.state === Uncovered)) {
-          alert("Won")
+          alert("Won!")
           state.won = true
         }
     }
